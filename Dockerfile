@@ -14,8 +14,8 @@ WORKDIR /app
 COPY composer.json ./
 # --no-scripts: artisan isn't runnable yet at this stage (no app code
 # copied in), and package:discover is re-run by the final image anyway.
-RUN composer install --no-dev --no-interaction --no-progress --no-scripts --prefer-dist
-
+RUN composer config --global audit.block-insecure false \
+    && composer install --no-dev --no-interaction --no-progress --no-scripts --prefer-dist
 FROM php:8.2-apache
 
 # PHP extensions this app actually needs: pdo_mysql (MySQL, the
