@@ -16,7 +16,7 @@ COPY composer.json ./
 # copied in), and package:discover is re-run by the final image anyway.
 RUN composer config --global audit.block-insecure false \
     && composer install --no-dev --no-interaction --no-progress --no-scripts --prefer-dist
-FROM  php:8.4-apache
+FROM php:8.4-apache
 
 # PHP extensions this app actually needs: pdo_mysql (MySQL, the
 # authoritative store per PHASE*.md), gd + exif (student profile photo
