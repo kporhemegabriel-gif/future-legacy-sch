@@ -41,7 +41,12 @@ COPY . .
 
 # Storage/cache directories must be writable by the web server user for
 # sessions, file-cache, logs, and profile-photo uploads to work.
-RUN chown -R www-data:www-data storage bootstrap/cache \
+RUN mkdir -p storage/framework/cache \
+    storage/framework/sessions \
+    storage/framework/views \
+    storage/logs \
+    bootstrap/cache \
+    && chown -R www-data:www-data storage bootstrap/cache \
     && chmod -R 775 storage bootstrap/cache
 
 EXPOSE 80
