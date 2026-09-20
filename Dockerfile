@@ -38,6 +38,7 @@ WORKDIR /var/www/html
 
 COPY --from=vendor /app/vendor ./vendor
 COPY . .
+RUN test -f bootstrap/app.php || (echo "ERROR: bootstrap/app.php is missing from the deployment"; exit 1)
 
 # Storage/cache directories must be writable by the web server user for
 # sessions, file-cache, logs, and profile-photo uploads to work.
